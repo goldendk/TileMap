@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "amd",
+    "noImplicitAny": false,
+    "preserveConstEnums": true,
+    "outDir": "../web/js",
+    "rootDir" : ".",
+    "out": "../web/js/tilemap.js",
+    "sourceMap": true
+  }
+
+}
