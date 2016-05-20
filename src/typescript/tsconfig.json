@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "amd",
+    "module": "commonjs",
     "noImplicitAny": false,
     "preserveConstEnums": true,
     "outDir": "../web/js",

@@ -3,8 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="http://babylonjs.com/hand.minified-1.2.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery-2.2.0.min.js"></script>
+    <script type="text/javascript" src="js/babylon-2.3-beta.js"></script>
+
+    <script type="text/javascript" src="js/tilemap.js"></script>
+
+    <style type="text/css">
+
+        html, body {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #renderCanvas {
+            position: absolute;
+            top:0px;
+            left:0px;
+            width: 100%;
+            height: 100%;
+            touch-action: none;
+        }
+
+    </style>
 </head>
+
 <body>
+test
+<canvas id="renderCanvas"></canvas>
+<script type="text/javascript">
+
+    $(function(){
+       //initialize the app.
+        window.tileMapApp = new TileMap.TileMapApp();
+        window.tileMapApp.initialize({
+           canvas: $("#renderCanvas")[0],
+            camera: TileMap.ORTH_CAM,
+            data:[{ p:0, q:0 }
+                , { p:1, q:0 }
+                , {p:0,q:1}, {p:1, q:1}
+            ]
+        });
+    });
+
+</script>
 
 </body>
+
 </html>
