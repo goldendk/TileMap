@@ -21,6 +21,7 @@ namespace TileMap {
 
             console.log(this.freeCamera.orthoTop + ", " + this.freeCamera.orthoBottom
             + ", " + this.freeCamera.orthoLeft + ", " +this.freeCamera.orthoRight);
+            console.log("Position: " + this.freeCamera.position);
         }
 
         onWheel = (e:any) =>{
@@ -55,14 +56,14 @@ namespace TileMap {
             //this.freeCamera.inputs.remove(this.freeCamera.inputs.attached["pointers"]);
             //this.freeCamera = new BABYLON.FreeCamera("aFreeCamera", new BABYLON.Vector3(-0.63, 0.02, -0), scene);
 
-            this.freeCamera.attachControl(canvas);
             this.freeCamera.position = new BABYLON.Vector3(0, 0, -60);
-
             this.freeCamera.mode = BABYLON.Camera.ORTHOGRAPHIC_CAMERA;
+
             this.freeCamera.orthoTop = 60;
             this.freeCamera.orthoBottom = -60;
             this.freeCamera.orthoLeft = -60;
             this.freeCamera.orthoRight = 60;
+            this.freeCamera.attachControl(canvas);
 
              if (canvas.addEventListener) {
                  if ('onwheel' in document) {

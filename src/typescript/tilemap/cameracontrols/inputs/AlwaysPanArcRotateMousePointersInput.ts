@@ -10,7 +10,7 @@ namespace TileMap {
 
         public pinchPrecision = 6.0;
 
-        public panningSensibility: number = 50.0;
+        public panningSensibility: number = 70.0;
 
         private _isRightClick: boolean = false;
         private _isCtrlPushed: boolean = true;//hack control always pushed.

@@ -49,21 +49,30 @@ namespace TileMap{
             this.cameraControl = buildCameraControl(this.cameraType);     // Camera
             this.cameraControl.attach(this.scene, this.canvas);
 
-         //   this.setupSkyBox();
-            var spot = new BABYLON.PointLight("spot", new BABYLON.Vector3(19, 0, -50), this.scene);
-            spot.intensity = 0.55;
+           // this.setupSkyBox();
+            this.setupGround();
+            var spot = new BABYLON.DirectionalLight("spot", new BABYLON.Vector3(1, 1, 1), this.scene);
+            spot.intensity = 0.9;
             spot.diffuse = new BABYLON.Color3(1, 1, 1);
 
             //listen for user interaction.
-            window.addEventListener("click", () => {
+            window.addEventListener("click", (e) => {
                this.onSceneClick();
             });
 
 
         };
+        private setupGround(){
+            var ground = BABYLON.Mesh.CreateGround("ground", 512, 512, 2, this.scene, false);
+            ground.position.z = 0;
+            window["ground"] = <any>ground;
+            ground.rotate(new BABYLON.Vector3(-1,0,0), -Math.PI/2)
+            ground.position.z = 1;
+
+        }
 
         private setupSkyBox(){
-            var skybox = BABYLON.Mesh.CreateBox("skyBox", 500.0, this.scene);
+            var skybox = BABYLON.Mesh.CreateBox("skyBox", 16.0, this.scene);
             var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", this.scene);
             skyboxMaterial.backFaceCulling = false;
             skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("textures/nebula", this.scene);
@@ -86,6 +95,10 @@ namespace TileMap{
          */
         private onSceneClick(){
             var tileUI = this.findTileUnder({x:this.scene.pointerX, y:this.scene.pointerY});
+            var pickResult = this.scene.pick(this.scene.pointerX, this.scene.pointerY);
+
+
+            console.log("World point: " + pickResult.pickedPoint);
             if(tileUI != null){
                 this.onTileClicked(tileUI);
             }
@@ -139,6 +152,7 @@ namespace TileMap{
 
         public findTileUnder(point:TileMap.Point):TileUI{
             var pickResult = this.scene.pick(point.x, point.y);
+
             console.log("Picking mesh under (" + point.x + ", " + point.y + ")");
            // console.log("camera: alpha" + this.camera.alpha + " beta: " + this.camera.beta + " radius "+ this.camera.radius );
             var value:TileUI = null;

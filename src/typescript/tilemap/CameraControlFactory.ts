@@ -3,14 +3,14 @@
  */
 namespace TileMap{
     
-    export function buildCameraControl(type:string){
-        if(TileMap.ORTH_CAM){
+    export function buildCameraControl(type:string):TileMap.CameraControl{
+        if(TileMap.ORTH_CAM == type){
             return new OrtogonalCameraControl();
-        }    
-    
-        else{
-            return new DefaultTileMapCameraControl();
         }
+        else{
+            //return new DefaultTileMapCameraControl();
+                return new SimpleFreeCamControl();
+            }
     } 
     
 }
