@@ -102,6 +102,9 @@ namespace TileMap{
             if(tileUI != null){
                 this.onTileClicked(tileUI);
             }
+            else{
+                this.onVoidClicked();
+            }
         }
 
         private onTileClicked(tile:TileUI){
@@ -173,10 +176,14 @@ namespace TileMap{
 
         private onVoidClicked(){
             var listeners = this.clickListeners['voidClick'];
+
+            var  coord = TileMap.calculateCoordinate(this.scene.pointerX, this.scene.pointerY);
             for(var key in listeners){
                 listeners[key].call(window, {
-                    screenX: this.scene.pointerX,
-                    screenY: this.scene.pointerY,
+                    x: this.scene.pointerX,
+                    y: this.scene.pointerY,
+                    p: coord.p,
+                    q: coord.q
                 })
             }
         }

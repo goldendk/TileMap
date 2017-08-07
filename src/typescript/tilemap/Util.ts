@@ -92,6 +92,11 @@ namespace TileMap {
         return point;
     }
 
+    export function calculateCoordinate(x:number, y:number, size:number = TileMap.DEFAULT_TILE_SIZE*1.21){
+        var p = x / (size * 3 /2 );
+        var q = 2* y / (Math.sqrt(3) * size) - p;
+        return{ p: p, q: q};
+    }
 }
 
 
